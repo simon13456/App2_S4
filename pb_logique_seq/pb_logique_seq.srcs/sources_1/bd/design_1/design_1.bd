@@ -819,111 +819,6 @@
           }
         }
       },
-      "Multiplexeur_choix_fonction": {
-        "vlnv": "xilinx.com:module_ref:mux4:1.0",
-        "xci_name": "design_1_mux4_0_0",
-        "xci_path": "ip\\design_1_mux4_0_0\\design_1_mux4_0_0.xci",
-        "inst_hier_path": "Multiplexeur_choix_fonction",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "mux4",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "input0": {
-            "direction": "I",
-            "left": "23",
-            "right": "0"
-          },
-          "input1": {
-            "direction": "I",
-            "left": "23",
-            "right": "0"
-          },
-          "input2": {
-            "direction": "I",
-            "left": "23",
-            "right": "0"
-          },
-          "input3": {
-            "direction": "I",
-            "left": "23",
-            "right": "0"
-          },
-          "sel": {
-            "direction": "I",
-            "left": "1",
-            "right": "0"
-          },
-          "output0": {
-            "direction": "O",
-            "left": "23",
-            "right": "0"
-          }
-        }
-      },
-      "Multiplexeur_choix_parametre": {
-        "vlnv": "xilinx.com:module_ref:mux4:1.0",
-        "xci_name": "design_1_mux4_0_1",
-        "xci_path": "ip\\design_1_mux4_0_1\\design_1_mux4_0_1.xci",
-        "inst_hier_path": "Multiplexeur_choix_parametre",
-        "parameters": {
-          "input_length": {
-            "value": "8"
-          }
-        },
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "mux4",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "input0": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "input1": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "input2": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "input3": {
-            "direction": "I",
-            "left": "7",
-            "right": "0"
-          },
-          "sel": {
-            "direction": "I",
-            "left": "1",
-            "right": "0"
-          },
-          "output0": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          }
-        }
-      },
-      "parametre_0": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "design_1_xlconstant_0_0",
-        "xci_path": "ip\\design_1_xlconstant_0_0\\design_1_xlconstant_0_0.xci",
-        "inst_hier_path": "parametre_0",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "0"
-          },
-          "CONST_WIDTH": {
-            "value": "8"
-          }
-        }
-      },
       "M5_parametre_1": {
         "vlnv": "xilinx.com:module_ref:calcul_param_1:1.0",
         "xci_name": "design_1_calcul_param_1_0_0",
@@ -936,7 +831,21 @@
         },
         "ports": {
           "i_bclk": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "PHASE": {
+                "value": "0.000",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_clk_100MHz",
+                "value_src": "default_prop"
+              }
+            }
           },
           "i_reset": {
             "type": "rst",
@@ -1097,6 +1006,20 @@
           }
         }
       },
+      "parametre_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "design_1_xlconstant_0_0",
+        "xci_path": "ip\\design_1_xlconstant_0_0\\design_1_xlconstant_0_0.xci",
+        "inst_hier_path": "parametre_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
       "M8_commande": {
         "vlnv": "xilinx.com:module_ref:module_commande:1.0",
         "xci_name": "design_1_module_commande_0_0",
@@ -1197,9 +1120,9 @@
       "decodeur_i2s_o_str_dat": {
         "ports": [
           "M1_decodeur_i2s/o_str_dat",
-          "M5_parametre_1/i_en",
           "M6_parametre_2/i_en",
-          "M7_parametre_3/i_en"
+          "M7_parametre_3/i_en",
+          "M5_parametre_1/i_en"
         ]
       },
       "clk_1": {
@@ -1208,9 +1131,9 @@
           "M1_decodeur_i2s/clk",
           "M9_codeur_i2s/i_bclk",
           "M10_conversion_affichage/clk",
-          "M5_parametre_1/i_bclk",
           "M6_parametre_2/i_bclk",
           "M7_parametre_3/i_bclk",
+          "M5_parametre_1/i_bclk",
           "M8_commande/clk"
         ]
       },
@@ -1256,9 +1179,9 @@
         "ports": [
           "Multiplexeur_choix_fonction/output0",
           "M9_codeur_i2s/i_dat_right",
-          "M5_parametre_1/i_ech",
           "M6_parametre_2/i_ech",
-          "M7_parametre_3/i_ech"
+          "M7_parametre_3/i_ech",
+          "M5_parametre_1/i_ech"
         ]
       },
       "decodeur_i2s_o_dat_right": {
@@ -1295,9 +1218,9 @@
           "M1_decodeur_i2s/i_reset",
           "M9_codeur_i2s/i_reset",
           "M10_conversion_affichage/reset",
-          "M5_parametre_1/i_reset",
           "M6_parametre_2/i_reset",
-          "M7_parametre_3/i_reset"
+          "M7_parametre_3/i_reset",
+          "M5_parametre_1/i_reset"
         ]
       },
       "M8_commande_o_btn_cd": {
@@ -1309,7 +1232,7 @@
     },
     "comments": {
       "/": {
-        "comment_1": "Modules à modifier:\nMEF_decodeur_i2s (dans M1_decodeur_i2s)\nM5_parametre_1\nM6_parametre_2\nM8_commande\nPour plus de clarté, vous pouvez cacher les fils pour les horloges\net les resets dans les paramètres (engrenage en haut a droite de cette fenêtre).\n"
+        "comment_1": "Modules ï¿½ modifier:\nMEF_decodeur_i2s (dans M1_decodeur_i2s)\nM5_parametre_1\nM6_parametre_2\nM8_commande\nPour plus de clartï¿½, vous pouvez cacher les fils pour les horloges\net les resets dans les paramï¿½tres (engrenage en haut a droite de cette fenï¿½tre).\n"
       }
     }
   }

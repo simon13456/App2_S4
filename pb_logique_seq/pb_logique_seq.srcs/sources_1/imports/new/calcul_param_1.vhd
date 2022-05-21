@@ -59,6 +59,8 @@ end component;
 ---------------------------------------------------------------------------------
 -- Signaux
 ----------------------------------------------------------------------------------
+
+
     -- state list
  type fsm_c_etats is (
       sta_At,
@@ -68,12 +70,21 @@ end component;
       sta_Li
      );
 signal fsm_EtatCourant, fsm_prochainEtat : fsm_c_etats; -- conserve le state
+signal cpt_previous, cpt_current, d_cpt, clk_By_Period : std_logic_vector (7 downto 0);
 
-
+signal d_reset, d_en, d_clk : std_logic;
 ---------------------------------------------------------------------------------------------
 --    Description comportementale
 ---------------------------------------------------------------------------------------------
 begin 
+-- instance du compteur
+inst_cpt : compteur_nbits
+ Port map(
+    clk             => d_clk,
+    i_en            => d_en,        
+    reset           => d_reset, 
+    o_val_cpt       => d_cpt 
+ );
 --Actualise le state
     process(i_bclk, i_reset)
     begin
@@ -97,13 +108,24 @@ end process;
                 fsm_prochainEtat <= sta_Vb;
             when sta_Vc =>
                 fsm_prochainEtat <= sta_Li;
-            when sta_Li =>
+            when sta_Li => -- On envoie les données 
                  fsm_prochainEtat <= sta_Li;
+                 cpt_current      <= d_cpt; 
             when others => -- Agit comme sta_At
                 fsm_prochainEtat <= sta_At;
+                d_reset <= '1';
+                cpt_previous<= "00000000";
         end case;
       else
-        fsm_prochainEtat <= sta_At;  
+        fsm_prochainEtat <= sta_At;
+        d_reset <= '1';
+        cpt_previous<= "00000000";         
       end if;  
+    end process;
+    process(d_cpt)
+    begin
+    clk_By_Period <= cpt_current - cpt_previous;
+    d_reset <= '1';
+    cpt_previous<= "00000000";  
     end process;
 end Behavioral;

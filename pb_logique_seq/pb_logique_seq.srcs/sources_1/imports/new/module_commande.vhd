@@ -1,8 +1,9 @@
 --  module_commande.vhd
+-- bera1107 & lers0601
 --  D. Dalle  30 avril 2019, 16 janv 2020, 23 avril 2020
 --  module qui permet de r?unir toutes les commandes (problematique circuit sequentiels)
 --  recues des boutons, avec conditionnement, et des interrupteurs
---  Auteur(s)       : bera1107 & lers0601
+
 -- 23 avril 2020 elimination constante mode_seq_bouton: std_logic := '0'
 
 LIBRARY ieee;
