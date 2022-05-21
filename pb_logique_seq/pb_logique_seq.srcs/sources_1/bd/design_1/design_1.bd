@@ -7,7 +7,8 @@
       "name": "design_1",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2020.2"
+      "tool_version": "2020.2",
+      "validated": "true"
     },
     "design_tree": {
       "M1_decodeur_i2s": {
@@ -31,13 +32,13 @@
       "M5_parametre_1": "",
       "M6_parametre_2": "",
       "M7_parametre_3": "",
+      "M8_commande": "",
       "Multiplexeur_choix_fonction": "",
       "Multiplexeur_choix_parametre": "",
       "M4_fonction3": "",
       "M2_fonction_distortion_dure1": "",
       "M3_fonction_distorsion_dure2": "",
-      "parametre_0": "",
-      "M8_commande": ""
+      "parametre_0": ""
     },
     "ports": {
       "i_recdat": {
@@ -60,8 +61,24 @@
         "type": "clk",
         "direction": "I",
         "parameters": {
+          "CLK_DOMAIN": {
+            "value": "design_1_clk_100MHz",
+            "value_src": "default"
+          },
           "FREQ_HZ": {
             "value": "100000000"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
           }
         }
       },
@@ -1066,6 +1083,62 @@
           }
         }
       },
+      "M8_commande": {
+        "vlnv": "xilinx.com:module_ref:module_commande:1.0",
+        "xci_name": "design_1_module_commande_0_0",
+        "xci_path": "ip\\design_1_module_commande_0_0\\design_1_module_commande_0_0.xci",
+        "inst_hier_path": "M8_commande",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "module_commande",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_clk_100MHz",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "o_reset": {
+            "type": "rst",
+            "direction": "O"
+          },
+          "i_btn": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "i_sw": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "o_btn_cd": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "o_selection_fct": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "o_selection_par": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          }
+        }
+      },
       "Multiplexeur_choix_fonction": {
         "vlnv": "xilinx.com:module_ref:mux4:1.0",
         "xci_name": "design_1_mux4_0_0",
@@ -1242,52 +1315,6 @@
           },
           "CONST_WIDTH": {
             "value": "8"
-          }
-        }
-      },
-      "M8_commande": {
-        "vlnv": "xilinx.com:module_ref:module_commande:1.0",
-        "xci_name": "design_1_module_commande_0_0",
-        "xci_path": "ip\\design_1_module_commande_0_0\\design_1_module_commande_0_0.xci",
-        "inst_hier_path": "M8_commande",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "module_commande",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I"
-          },
-          "o_reset": {
-            "type": "rst",
-            "direction": "O"
-          },
-          "i_btn": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "i_sw": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "o_btn_cd": {
-            "direction": "O",
-            "left": "3",
-            "right": "0"
-          },
-          "o_selection_fct": {
-            "direction": "O",
-            "left": "1",
-            "right": "0"
-          },
-          "o_selection_par": {
-            "direction": "O",
-            "left": "1",
-            "right": "0"
           }
         }
       }
