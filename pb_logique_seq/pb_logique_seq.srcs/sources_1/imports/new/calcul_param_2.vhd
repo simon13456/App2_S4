@@ -46,7 +46,20 @@ end calcul_param_2;
 ----------------------------------------------------------------------------------
 
 architecture Behavioral of calcul_param_2 is
-
+component MefM6 is
+    Port ( l_bdc : in STD_LOGIC;
+           l_echd : in STD_LOGIC;
+           l_reset : in STD_LOGIC;
+           l_en : in STD_LOGIC;
+           o_param : out STD_LOGIC);
+end component;
+component MoyenneFuyante is
+    Port ( l_bdk : in STD_LOGIC;
+           l_reset : in STD_LOGIC;
+           l_en : in STD_LOGIC;
+           l_ech : in STD_LOGIC;
+           L_echd : out STD_LOGIC);
+end component;
 ---------------------------------------------------------------------------------
 -- Signaux
 ----------------------------------------------------------------------------------

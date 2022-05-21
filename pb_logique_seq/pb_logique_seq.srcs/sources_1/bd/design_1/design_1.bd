@@ -18,25 +18,25 @@
         "registre_decalage_24bits": ""
       },
       "M9_codeur_i2s": {
-        "compteur_nbits_0": "",
-        "mef_cod_i2s_vsb_0": "",
         "mux2_0": "",
-        "reg_dec_24b_fd_0": "",
         "util_vector_logic_0": "",
         "xlconcat_0": "",
         "xlconstant_0": "",
-        "xlslice_0": ""
+        "xlslice_0": "",
+        "compteur_nbits_0": "",
+        "mef_cod_i2s_vsb_0": "",
+        "reg_dec_24b_fd_0": ""
       },
       "M10_conversion_affichage": "",
+      "Multiplexeur_choix_fonction": "",
+      "Multiplexeur_choix_parametre": "",
+      "parametre_0": "",
       "M5_parametre_1": "",
       "M6_parametre_2": "",
       "M7_parametre_3": "",
-      "Multiplexeur_choix_fonction": "",
-      "Multiplexeur_choix_parametre": "",
       "M4_fonction3": "",
       "M2_fonction_distortion_dure1": "",
       "M3_fonction_distorsion_dure2": "",
-      "parametre_0": "",
       "M8_commande": ""
     },
     "ports": {
@@ -144,14 +144,6 @@
                   "ASSOCIATED_RESET": {
                     "value": "reset",
                     "value_src": "constant"
-                  },
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
                   }
                 }
               },
@@ -181,21 +173,7 @@
             },
             "ports": {
               "i_bclk": {
-                "direction": "I",
-                "parameters": {
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "PHASE": {
-                    "value": "0.000",
-                    "value_src": "default_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
-                  }
-                }
+                "direction": "I"
               },
               "i_reset": {
                 "type": "rst",
@@ -245,14 +223,6 @@
                   "ASSOCIATED_RESET": {
                     "value": "i_reset",
                     "value_src": "constant"
-                  },
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
                   }
                 }
               },
@@ -293,14 +263,6 @@
                   "ASSOCIATED_RESET": {
                     "value": "i_reset",
                     "value_src": "constant"
-                  },
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
                   }
                 }
               },
@@ -341,14 +303,6 @@
                   "ASSOCIATED_RESET": {
                     "value": "i_reset",
                     "value_src": "constant"
-                  },
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
                   }
                 }
               },
@@ -497,129 +451,6 @@
           }
         },
         "components": {
-          "compteur_nbits_0": {
-            "vlnv": "xilinx.com:module_ref:compteur_nbits:1.0",
-            "xci_name": "design_1_compteur_nbits_0_1",
-            "xci_path": "ip\\design_1_compteur_nbits_0_1\\design_1_compteur_nbits_0_1.xci",
-            "inst_hier_path": "M9_codeur_i2s/compteur_nbits_0",
-            "parameters": {
-              "nbits": {
-                "value": "7"
-              }
-            },
-            "reference_info": {
-              "ref_type": "hdl",
-              "ref_name": "compteur_nbits",
-              "boundary_crc": "0x0"
-            },
-            "ports": {
-              "clk": {
-                "type": "clk",
-                "direction": "I",
-                "parameters": {
-                  "ASSOCIATED_RESET": {
-                    "value": "reset",
-                    "value_src": "constant"
-                  },
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
-                  }
-                }
-              },
-              "i_en": {
-                "direction": "I"
-              },
-              "reset": {
-                "type": "rst",
-                "direction": "I"
-              },
-              "o_val_cpt": {
-                "direction": "O",
-                "left": "6",
-                "right": "0"
-              }
-            }
-          },
-          "mef_cod_i2s_vsb_0": {
-            "vlnv": "xilinx.com:module_ref:mef_cod_i2s_vsb:1.0",
-            "xci_name": "design_1_mef_cod_i2s_vsb_0_0",
-            "xci_path": "ip\\design_1_mef_cod_i2s_vsb_0_0\\design_1_mef_cod_i2s_vsb_0_0.xci",
-            "inst_hier_path": "M9_codeur_i2s/mef_cod_i2s_vsb_0",
-            "reference_info": {
-              "ref_type": "hdl",
-              "ref_name": "mef_cod_i2s_vsb",
-              "boundary_crc": "0x0"
-            },
-            "ports": {
-              "i_bclk": {
-                "direction": "I",
-                "parameters": {
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "PHASE": {
-                    "value": "0.000",
-                    "value_src": "default_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
-                  }
-                }
-              },
-              "i_reset": {
-                "type": "rst",
-                "direction": "I"
-              },
-              "i_lrc": {
-                "direction": "I"
-              },
-              "i_cpt_bits": {
-                "direction": "I",
-                "left": "6",
-                "right": "0"
-              },
-              "o_bit_enable": {
-                "direction": "O"
-              },
-              "o_load_left": {
-                "direction": "O",
-                "parameters": {
-                  "PortType": {
-                    "value": "undef",
-                    "value_src": "ip_prop"
-                  },
-                  "PortType.PROP_SRC": {
-                    "value": "false",
-                    "value_src": "ip_prop"
-                  }
-                }
-              },
-              "o_load_right": {
-                "direction": "O",
-                "parameters": {
-                  "PortType": {
-                    "value": "undef",
-                    "value_src": "ip_prop"
-                  },
-                  "PortType.PROP_SRC": {
-                    "value": "false",
-                    "value_src": "ip_prop"
-                  }
-                }
-              },
-              "o_cpt_bit_reset": {
-                "type": "rst",
-                "direction": "O"
-              }
-            }
-          },
           "mux2_0": {
             "vlnv": "xilinx.com:module_ref:mux2:1.0",
             "xci_name": "design_1_mux2_0_0",
@@ -653,70 +484,6 @@
                 "right": "0"
               },
               "output0": {
-                "direction": "O",
-                "left": "23",
-                "right": "0"
-              }
-            }
-          },
-          "reg_dec_24b_fd_0": {
-            "vlnv": "xilinx.com:module_ref:reg_dec_24b_fd:1.0",
-            "xci_name": "design_1_reg_dec_24b_fd_0_0",
-            "xci_path": "ip\\design_1_reg_dec_24b_fd_0_0\\design_1_reg_dec_24b_fd_0_0.xci",
-            "inst_hier_path": "M9_codeur_i2s/reg_dec_24b_fd_0",
-            "reference_info": {
-              "ref_type": "hdl",
-              "ref_name": "reg_dec_24b_fd",
-              "boundary_crc": "0x0"
-            },
-            "ports": {
-              "i_clk": {
-                "type": "clk",
-                "direction": "I",
-                "parameters": {
-                  "ASSOCIATED_RESET": {
-                    "value": "i_reset",
-                    "value_src": "constant"
-                  },
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
-                  }
-                }
-              },
-              "i_reset": {
-                "type": "rst",
-                "direction": "I"
-              },
-              "i_load": {
-                "direction": "I",
-                "parameters": {
-                  "PortType": {
-                    "value": "undef",
-                    "value_src": "ip_prop"
-                  },
-                  "PortType.PROP_SRC": {
-                    "value": "false",
-                    "value_src": "ip_prop"
-                  }
-                }
-              },
-              "i_en": {
-                "direction": "I"
-              },
-              "i_dat_bit": {
-                "direction": "I"
-              },
-              "i_dat_load": {
-                "direction": "I",
-                "left": "23",
-                "right": "0"
-              },
-              "o_dat": {
                 "direction": "O",
                 "left": "23",
                 "right": "0"
@@ -766,6 +533,133 @@
               },
               "DOUT_WIDTH": {
                 "value": "1"
+              }
+            }
+          },
+          "compteur_nbits_0": {
+            "vlnv": "xilinx.com:module_ref:compteur_nbits:1.0",
+            "xci_name": "design_1_compteur_nbits_0_1",
+            "xci_path": "ip\\design_1_compteur_nbits_0_1\\design_1_compteur_nbits_0_1.xci",
+            "inst_hier_path": "M9_codeur_i2s/compteur_nbits_0",
+            "parameters": {
+              "nbits": {
+                "value": "7"
+              }
+            },
+            "reference_info": {
+              "ref_type": "hdl",
+              "ref_name": "compteur_nbits",
+              "boundary_crc": "0x0"
+            },
+            "ports": {
+              "clk": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "ASSOCIATED_RESET": {
+                    "value": "reset",
+                    "value_src": "constant"
+                  }
+                }
+              },
+              "i_en": {
+                "direction": "I"
+              },
+              "reset": {
+                "type": "rst",
+                "direction": "I"
+              },
+              "o_val_cpt": {
+                "direction": "O",
+                "left": "6",
+                "right": "0"
+              }
+            }
+          },
+          "mef_cod_i2s_vsb_0": {
+            "vlnv": "xilinx.com:module_ref:mef_cod_i2s_vsb:1.0",
+            "xci_name": "design_1_mef_cod_i2s_vsb_0_0",
+            "xci_path": "ip\\design_1_mef_cod_i2s_vsb_0_0\\design_1_mef_cod_i2s_vsb_0_0.xci",
+            "inst_hier_path": "M9_codeur_i2s/mef_cod_i2s_vsb_0",
+            "reference_info": {
+              "ref_type": "hdl",
+              "ref_name": "mef_cod_i2s_vsb",
+              "boundary_crc": "0x0"
+            },
+            "ports": {
+              "i_bclk": {
+                "direction": "I"
+              },
+              "i_reset": {
+                "type": "rst",
+                "direction": "I"
+              },
+              "i_lrc": {
+                "direction": "I"
+              },
+              "i_cpt_bits": {
+                "direction": "I",
+                "left": "6",
+                "right": "0"
+              },
+              "o_bit_enable": {
+                "direction": "O"
+              },
+              "o_load_left": {
+                "direction": "O"
+              },
+              "o_load_right": {
+                "direction": "O"
+              },
+              "o_cpt_bit_reset": {
+                "type": "rst",
+                "direction": "O"
+              }
+            }
+          },
+          "reg_dec_24b_fd_0": {
+            "vlnv": "xilinx.com:module_ref:reg_dec_24b_fd:1.0",
+            "xci_name": "design_1_reg_dec_24b_fd_0_0",
+            "xci_path": "ip\\design_1_reg_dec_24b_fd_0_0\\design_1_reg_dec_24b_fd_0_0.xci",
+            "inst_hier_path": "M9_codeur_i2s/reg_dec_24b_fd_0",
+            "reference_info": {
+              "ref_type": "hdl",
+              "ref_name": "reg_dec_24b_fd",
+              "boundary_crc": "0x0"
+            },
+            "ports": {
+              "i_clk": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "ASSOCIATED_RESET": {
+                    "value": "i_reset",
+                    "value_src": "constant"
+                  }
+                }
+              },
+              "i_reset": {
+                "type": "rst",
+                "direction": "I"
+              },
+              "i_load": {
+                "direction": "I"
+              },
+              "i_en": {
+                "direction": "I"
+              },
+              "i_dat_bit": {
+                "direction": "I"
+              },
+              "i_dat_load": {
+                "direction": "I",
+                "left": "23",
+                "right": "0"
+              },
+              "o_dat": {
+                "direction": "O",
+                "left": "23",
+                "right": "0"
               }
             }
           }
@@ -925,147 +819,6 @@
           }
         }
       },
-      "M5_parametre_1": {
-        "vlnv": "xilinx.com:module_ref:calcul_param_1:1.0",
-        "xci_name": "design_1_calcul_param_1_0_0",
-        "xci_path": "ip\\design_1_calcul_param_1_0_0\\design_1_calcul_param_1_0_0.xci",
-        "inst_hier_path": "M5_parametre_1",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "calcul_param_1",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "i_bclk": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              },
-              "PHASE": {
-                "value": "0.000",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "design_1_clk_100MHz",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "i_reset": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "i_en": {
-            "direction": "I"
-          },
-          "i_ech": {
-            "direction": "I",
-            "left": "23",
-            "right": "0"
-          },
-          "o_param": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          }
-        }
-      },
-      "M6_parametre_2": {
-        "vlnv": "xilinx.com:module_ref:calcul_param_2:1.0",
-        "xci_name": "design_1_calcul_param_2_0_0",
-        "xci_path": "ip\\design_1_calcul_param_2_0_0\\design_1_calcul_param_2_0_0.xci",
-        "inst_hier_path": "M6_parametre_2",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "calcul_param_2",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "i_bclk": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              },
-              "PHASE": {
-                "value": "0.000",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "design_1_clk_100MHz",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "i_reset": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "i_en": {
-            "direction": "I"
-          },
-          "i_ech": {
-            "direction": "I",
-            "left": "23",
-            "right": "0"
-          },
-          "o_param": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          }
-        }
-      },
-      "M7_parametre_3": {
-        "vlnv": "xilinx.com:module_ref:calcul_param_3:1.0",
-        "xci_name": "design_1_calcul_param_3_0_0",
-        "xci_path": "ip\\design_1_calcul_param_3_0_0\\design_1_calcul_param_3_0_0.xci",
-        "inst_hier_path": "M7_parametre_3",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "calcul_param_3",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "i_bclk": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              },
-              "PHASE": {
-                "value": "0.000",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "design_1_clk_100MHz",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "i_reset": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "i_en": {
-            "direction": "I"
-          },
-          "i_ech": {
-            "direction": "I",
-            "left": "23",
-            "right": "0"
-          },
-          "o_param": {
-            "direction": "O",
-            "left": "7",
-            "right": "0"
-          }
-        }
-      },
       "Multiplexeur_choix_fonction": {
         "vlnv": "xilinx.com:module_ref:mux4:1.0",
         "xci_name": "design_1_mux4_0_0",
@@ -1157,6 +910,119 @@
           }
         }
       },
+      "parametre_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "design_1_xlconstant_0_0",
+        "xci_path": "ip\\design_1_xlconstant_0_0\\design_1_xlconstant_0_0.xci",
+        "inst_hier_path": "parametre_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "M5_parametre_1": {
+        "vlnv": "xilinx.com:module_ref:calcul_param_1:1.0",
+        "xci_name": "design_1_calcul_param_1_0_0",
+        "xci_path": "ip\\design_1_calcul_param_1_0_0\\design_1_calcul_param_1_0_0.xci",
+        "inst_hier_path": "M5_parametre_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "calcul_param_1",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "i_bclk": {
+            "direction": "I"
+          },
+          "i_reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "i_en": {
+            "direction": "I"
+          },
+          "i_ech": {
+            "direction": "I",
+            "left": "23",
+            "right": "0"
+          },
+          "o_param": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "M6_parametre_2": {
+        "vlnv": "xilinx.com:module_ref:calcul_param_2:1.0",
+        "xci_name": "design_1_calcul_param_2_0_0",
+        "xci_path": "ip\\design_1_calcul_param_2_0_0\\design_1_calcul_param_2_0_0.xci",
+        "inst_hier_path": "M6_parametre_2",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "calcul_param_2",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "i_bclk": {
+            "direction": "I"
+          },
+          "i_reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "i_en": {
+            "direction": "I"
+          },
+          "i_ech": {
+            "direction": "I",
+            "left": "23",
+            "right": "0"
+          },
+          "o_param": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "M7_parametre_3": {
+        "vlnv": "xilinx.com:module_ref:calcul_param_3:1.0",
+        "xci_name": "design_1_calcul_param_3_0_0",
+        "xci_path": "ip\\design_1_calcul_param_3_0_0\\design_1_calcul_param_3_0_0.xci",
+        "inst_hier_path": "M7_parametre_3",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "calcul_param_3",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "i_bclk": {
+            "direction": "I"
+          },
+          "i_reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "i_en": {
+            "direction": "I"
+          },
+          "i_ech": {
+            "direction": "I",
+            "left": "23",
+            "right": "0"
+          },
+          "o_param": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
       "M4_fonction3": {
         "vlnv": "xilinx.com:module_ref:sig_fct_3:1.0",
         "xci_name": "design_1_sig_fct_3_0_0",
@@ -1228,20 +1094,6 @@
             "direction": "O",
             "left": "23",
             "right": "0"
-          }
-        }
-      },
-      "parametre_0": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "design_1_xlconstant_0_0",
-        "xci_path": "ip\\design_1_xlconstant_0_0\\design_1_xlconstant_0_0.xci",
-        "inst_hier_path": "parametre_0",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "0"
-          },
-          "CONST_WIDTH": {
-            "value": "8"
           }
         }
       },
