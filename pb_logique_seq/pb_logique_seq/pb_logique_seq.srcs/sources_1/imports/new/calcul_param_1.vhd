@@ -3,7 +3,7 @@
 --    calcul_param_1.vhd
 ---------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------
---    Université de Sherbrooke - Département de GEGI
+--    Universit? de Sherbrooke - D?partement de GEGI
 --
 --    Version         : 5.0
 --    Nomenclature    : inspiree de la nomenclature 0.2 GRAMS
@@ -17,8 +17,8 @@
 ---------------------------------------------------------------------------------------------
 --
 ---------------------------------------------------------------------------------------------
--- À FAIRE: 
--- Voir le guide de la problématique
+-- ? FAIRE: 
+-- Voir le guide de la probl?matique
 ---------------------------------------------------------------------------------------------
 --
 ---------------------------------------------------------------------------------------------
@@ -37,9 +37,9 @@ entity calcul_param_1 is
     Port (
     i_bclk    : in   std_logic; -- bit clock (I2S)
     i_reset   : in   std_logic;
-    i_en      : in   std_logic; -- un echantillon present a l'entrée
-    i_ech     : in   std_logic_vector (23 downto 0); -- echantillon en entrée
-    o_param   : out  std_logic_vector (7 downto 0)   -- paramètre calculé
+    i_en      : in   std_logic; -- un echantillon present a l'entr?e
+    i_ech     : in   std_logic_vector (23 downto 0); -- echantillon en entr?e
+    o_param   : out  std_logic_vector (7 downto 0)   -- param?tre calcul?
     );
 end calcul_param_1;
 
@@ -67,10 +67,11 @@ end component;
       sta_Va,
       sta_Vb,
       sta_Vc,
+      sta_Se,
       sta_Li
      );
 signal fsm_EtatCourant, fsm_prochainEtat : fsm_c_etats; -- conserve le state
-signal cpt_previous, cpt_current, d_cpt, clk_By_Period : std_logic_vector (7 downto 0) := "00000000";
+signal cpt_current, d_cpt : std_logic_vector (7 downto 0) := "00000000";
 
 signal d_reset, d_en, d_clk : std_logic;
 ---------------------------------------------------------------------------------------------
@@ -100,6 +101,7 @@ end process;
 --MEF M5
     process(i_bclk)
     begin
+    d_en <= i_en;
       if i_ech(23) = '0' then  
         case fsm_EtatCourant is
             when sta_Va =>
@@ -108,9 +110,11 @@ end process;
                 fsm_prochainEtat <= sta_Vb;
             when sta_Vc =>
                 fsm_prochainEtat <= sta_Li;
-            when sta_Li => -- On envoie les données 
+            when sta_Se => -- On envoie les donn?es 
                  fsm_prochainEtat <= sta_Li;
-                 cpt_current      <= d_cpt; 
+                 cpt_current      <= d_cpt;
+            when sta_Li =>
+                 fsm_prochainEtat <= sta_Li;
             when others => -- Agit comme sta_At
                 fsm_prochainEtat <= sta_At;
                 d_reset <= '1';
@@ -120,9 +124,8 @@ end process;
         d_reset <= '1';      
       end if;  
     end process;
-    process(d_cpt) -- On handle pas (encore) le overflow 
+    process(cpt_current) -- On handle pas (encore) le overflow 
     begin
-    clk_By_Period <= cpt_current - cpt_previous;
-    cpt_previous  <= cpt_current;
+    o_param <= cpt_current;
     end process;
 end Behavioral;
