@@ -34,7 +34,7 @@ end compteur_nbits;
 architecture BEHAVIORAL of compteur_nbits is               
 -- compteur simple
 
-signal  d_val_cpt: std_logic_vector (nbits-1 downto 0);
+signal  d_val_cpt: std_logic_vector (7 downto 0):= "00000000";
 
 BEGIN
 

@@ -70,7 +70,7 @@ end component;
       sta_Li
      );
 signal fsm_EtatCourant, fsm_prochainEtat : fsm_c_etats; -- conserve le state
-signal cpt_current, d_cpt : std_logic_vector (7 downto 0) := "00000000";
+signal d_cpt : std_logic_vector (7 downto 0) := "00000000";
 
 signal  d_en, d_clk : std_logic;
 signal cpt_reset : std_logic := '0';
@@ -100,50 +100,51 @@ end process;
 
 --MEF M5
     process(i_bclk)
-    begin
-      if i_ech(23) = '0' then  
+    begin  
         case fsm_EtatCourant is
-            when sta_Va =>
+            when sta_At =>
                 cpt_reset <= '0';
-                if(i_reset = '1') then
+                if(i_en ='1' and i_ech(23) ='1') then
                 fsm_prochainEtat <= sta_At;
-                else 
+                elsif(i_ech(23) = '0' and i_en = '1') then 
+                fsm_prochainEtat <= sta_Va;
+                end if;
+            when sta_Va =>
+                if(i_reset = '1' and i_en = '1') then
+                fsm_prochainEtat <= sta_At;
+                elsif(i_ech(23) = '0' and i_en = '1') then 
                 fsm_prochainEtat <= sta_Vb;
                 end if;
             when sta_Vb =>
-                if(i_reset = '1') then
+                if(i_reset = '1' and i_en = '1') then
                 fsm_prochainEtat <= sta_At;
-                else 
-                fsm_prochainEtat <= sta_Vb;
+                elsif(i_ech(23) = '0' and i_en = '1') then  
+                fsm_prochainEtat <= sta_Vc;
                 end if;
             when sta_Vc =>
-                if(i_reset = '1') then
+                if(i_reset = '1' and i_en = '1') then
                 fsm_prochainEtat <= sta_At;
-                else 
+                elsif(i_ech(23) = '0' and i_en = '1') then  
                 fsm_prochainEtat <= sta_Li;
-                cpt_current      <= d_cpt;
                 end if;           
             when sta_Li =>
-                if(i_reset = '1') then
-                fsm_prochainEtat <= sta_At;
-                else 
-                fsm_prochainEtat <= sta_Li;
-                end if;
-            when others => -- Agit comme sta_At
+                if(i_reset = '1' or i_ech(23)='1') then
                 fsm_prochainEtat <= sta_At;
                 cpt_reset <= '1';
-        end case;
-      else
-        fsm_prochainEtat <= sta_At;    
-      end if;  
+                elsif(i_ech(23) = '0' and i_en = '1') then 
+                fsm_prochainEtat <= sta_Li;
+                end if;
+        end case; 
     end process;
-    process(cpt_current)
+    process(fsm_EtatCourant,d_cpt)
     begin
-    if fsm_EtatCourant = sta_Vc then
-    o_param <= cpt_current;
-    cpt_reset <= '1';
-    else 
-    o_param <= "00000000";
-    end if;
+    case fsm_EtatCourant is
+        when sta_Li =>
+        o_param <= d_cpt-1;
+        cpt_reset <= '1';
+        
+        when others =>
+        o_param <= "00000000";
+    end case;
     end process;
 end Behavioral;
