@@ -48,13 +48,27 @@ component calcul_param_1 is
 end component;
 
 --signaux intermediaire calcul_param_1
-signal d_bclk  : std_logic := '0';
 signal d_reset : std_logic := '0';
 signal d_en    : std_logic := '0';
 signal d_ech   : std_logic_vector(23 downto 0);
 signal d_param : std_logic_vector (7 downto 0);
 
+signal   d_ac_en_clk     : std_logic := '0';   -- Clock de la sim
+constant c_en_clk_Period : time :=  20 ns;  --  50 MHz
+constant c_data_period : time := 20.8 us;
 begin
+
+sim_en_clk:  process
+      begin
+         d_ac_en_clk <= '1';  -- init
+         loop
+            wait for c_en_clk_Period / 2;
+            d_ac_en_clk <= not d_ac_en_clk;
+         end loop;
+      end process;
+
+
+
 
 ----------------------------------------------------------------------------
 -- unites objets du test  
@@ -62,7 +76,7 @@ begin
 UUT: calcul_param_1 
    Port map
     (
-    i_bclk  => d_bclk,
+    i_bclk  => d_ac_en_clk,
     i_reset => d_reset,
     i_en    => d_en,
     i_ech   => d_ech,
@@ -71,7 +85,49 @@ UUT: calcul_param_1
 
 TB : PROCESS
     BEGIN
-    
+    d_reset <= '1';
+    wait for c_en_clk_Period;
+    d_reset <= '0';
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+     d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;        
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;    
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;        
     END PROCESS; 
 
 end Behavioral;

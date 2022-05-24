@@ -67,13 +67,13 @@ end component;
       sta_Va,
       sta_Vb,
       sta_Vc,
-      sta_Se,
       sta_Li
      );
 signal fsm_EtatCourant, fsm_prochainEtat : fsm_c_etats; -- conserve le state
 signal cpt_current, d_cpt : std_logic_vector (7 downto 0) := "00000000";
 
-signal d_reset, d_en, d_clk : std_logic;
+signal  d_en, d_clk : std_logic;
+signal cpt_reset : std_logic := '0';
 ---------------------------------------------------------------------------------------------
 --    Description comportementale
 ---------------------------------------------------------------------------------------------
@@ -81,9 +81,9 @@ begin
 -- instance du compteur
 inst_cpt : compteur_nbits
  Port map(
-    clk             => d_clk,
-    i_en            => d_en,        
-    reset           => d_reset, 
+    clk             => i_bclk,
+    i_en            => i_en,        
+    reset           => cpt_reset, 
     o_val_cpt       => d_cpt 
  );
 --Actualise le state
@@ -101,31 +101,49 @@ end process;
 --MEF M5
     process(i_bclk)
     begin
-    d_en <= i_en;
       if i_ech(23) = '0' then  
         case fsm_EtatCourant is
             when sta_Va =>
+                cpt_reset <= '0';
+                if(i_reset = '1') then
+                fsm_prochainEtat <= sta_At;
+                else 
                 fsm_prochainEtat <= sta_Vb;
+                end if;
             when sta_Vb =>
+                if(i_reset = '1') then
+                fsm_prochainEtat <= sta_At;
+                else 
                 fsm_prochainEtat <= sta_Vb;
+                end if;
             when sta_Vc =>
+                if(i_reset = '1') then
+                fsm_prochainEtat <= sta_At;
+                else 
                 fsm_prochainEtat <= sta_Li;
-            when sta_Se => -- On envoie les donn?es 
-                 fsm_prochainEtat <= sta_Li;
-                 cpt_current      <= d_cpt;
+                cpt_current      <= d_cpt;
+                end if;           
             when sta_Li =>
-                 fsm_prochainEtat <= sta_Li;
+                if(i_reset = '1') then
+                fsm_prochainEtat <= sta_At;
+                else 
+                fsm_prochainEtat <= sta_Li;
+                end if;
             when others => -- Agit comme sta_At
                 fsm_prochainEtat <= sta_At;
-                d_reset <= '1';
+                cpt_reset <= '1';
         end case;
       else
-        fsm_prochainEtat <= sta_At;
-        d_reset <= '1';      
+        fsm_prochainEtat <= sta_At;    
       end if;  
     end process;
-    process(cpt_current) -- On handle pas (encore) le overflow 
+    process(cpt_current)
     begin
+    if fsm_EtatCourant = sta_Vc then
     o_param <= cpt_current;
+    cpt_reset <= '1';
+    else 
+    o_param <= "00000000";
+    end if;
     end process;
 end Behavioral;

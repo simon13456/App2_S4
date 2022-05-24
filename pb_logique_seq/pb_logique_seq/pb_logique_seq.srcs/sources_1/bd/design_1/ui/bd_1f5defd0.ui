@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"0.565802",
-   "Default View_TopLeft":"-209,-21",
+   "Default View_TopLeft":"-209,-30",
    "ExpandedHierarchyInLayout":"",
    "comment_1":"Modules à modifier:
 MEF_decodeur_i2s (dans M1_decodeur_i2s)
@@ -36,8 +36,8 @@ preplace inst M4_fonction3 -pg 1 -lvl 2 -x 430 -y 380 -defaultsOSRD
 preplace inst M2_fonction_distortion_dure1 -pg 1 -lvl 2 -x 430 -y 180 -defaultsOSRD
 preplace inst M3_fonction_distorsion_dure2 -pg 1 -lvl 2 -x 430 -y 280 -defaultsOSRD
 preplace inst parametre_0 -pg 1 -lvl 4 -x 1060 -y 30 -defaultsOSRD
-preplace inst M5_parametre_1 -pg 1 -lvl 4 -x 1060 -y 160 -defaultsOSRD
 preplace inst M8_commande -pg 1 -lvl 2 -x 430 -y 730 -defaultsOSRD
+preplace inst M5_parametre_1 -pg 1 -lvl 4 -x 1060 -y 160 -defaultsOSRD
 preplace netloc sig_fct_sat_dure_0_o_ech_fct 1 2 1 580 180n
 preplace netloc sig_fct_sat_dure_1_o_ech_fct 1 2 1 590 270n
 preplace netloc sig_fct_3_0_o_ech_fct 1 2 1 580 290n
