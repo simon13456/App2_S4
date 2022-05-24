@@ -100,47 +100,47 @@ end process;
 
 --MEF M5
     process(i_bclk)
-    begin  
+    begin
+    if i_en ='1' then 
+        if i_reset ='1' then
+            fsm_prochainEtat <= sta_At;
+        end if;
         case fsm_EtatCourant is
+
             when sta_At =>
                 cpt_reset <= '0';
-                if(i_en ='1' and i_ech(23) ='1') then
-                fsm_prochainEtat <= sta_At;
-                elsif(i_ech(23) = '0' and i_en = '1') then 
-                fsm_prochainEtat <= sta_Va;
+                if(i_ech(23) ='1') then
+                    fsm_prochainEtat <= sta_At;
+                elsif(i_ech(23) = '0') then 
+                    fsm_prochainEtat <= sta_Va;
                 end if;
             when sta_Va =>
-                if(i_reset = '1' and i_en = '1') then
-                fsm_prochainEtat <= sta_At;
-                elsif(i_ech(23) = '0' and i_en = '1') then 
-                fsm_prochainEtat <= sta_Vb;
+                if(i_ech(23) = '0') then 
+                    fsm_prochainEtat <= sta_Vb;
                 end if;
             when sta_Vb =>
-                if(i_reset = '1' and i_en = '1') then
-                fsm_prochainEtat <= sta_At;
-                elsif(i_ech(23) = '0' and i_en = '1') then  
-                fsm_prochainEtat <= sta_Vc;
+                if(i_ech(23) = '0') then  
+                    fsm_prochainEtat <= sta_Vc;
                 end if;
             when sta_Vc =>
-                if(i_reset = '1' and i_en = '1') then
-                fsm_prochainEtat <= sta_At;
-                elsif(i_ech(23) = '0' and i_en = '1') then  
-                fsm_prochainEtat <= sta_Li;
+                if(i_ech(23) = '0') then  
+                    fsm_prochainEtat <= sta_Li;
                 end if;           
             when sta_Li =>
-                if(i_reset = '1' or i_ech(23)='1') then
-                fsm_prochainEtat <= sta_At;
-                cpt_reset <= '1';
-                elsif(i_ech(23) = '0' and i_en = '1') then 
-                fsm_prochainEtat <= sta_Li;
+                if(i_ech(23)='1') then
+                    fsm_prochainEtat <= sta_At;
+                    cpt_reset <= '1';
+                elsif(i_ech(23) = '0') then 
+                    fsm_prochainEtat <= sta_Li;
                 end if;
         end case; 
+      end if;  
     end process;
     process(fsm_EtatCourant,d_cpt)
     begin
     case fsm_EtatCourant is
         when sta_Li =>
-        o_param <= d_cpt-1;
+        o_param <= d_cpt-1; -- On envoie les donnes pour etre afficher
         cpt_reset <= '1';
         
         when others =>

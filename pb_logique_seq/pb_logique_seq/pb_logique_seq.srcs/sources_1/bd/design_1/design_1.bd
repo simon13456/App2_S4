@@ -11,21 +11,21 @@
     },
     "design_tree": {
       "M1_decodeur_i2s": {
-        "compteur_7bits": "",
         "MEF_decodeur_i2s": "",
         "registre_24bits_droite": "",
         "registre_24bits_gauche": "",
-        "registre_decalage_24bits": ""
+        "registre_decalage_24bits": "",
+        "compteur_7bits": ""
       },
       "M9_codeur_i2s": {
-        "compteur_nbits_0": "",
         "mef_cod_i2s_vsb_0": "",
         "mux2_0": "",
         "reg_dec_24b_fd_0": "",
         "util_vector_logic_0": "",
         "xlconcat_0": "",
         "xlconstant_0": "",
-        "xlslice_0": ""
+        "xlslice_0": "",
+        "compteur_nbits_0": ""
       },
       "M10_conversion_affichage": "",
       "M6_parametre_2": "",
@@ -121,54 +121,6 @@
           }
         },
         "components": {
-          "compteur_7bits": {
-            "vlnv": "xilinx.com:module_ref:compteur_nbits:1.0",
-            "xci_name": "design_1_compteur_nbits_0_0",
-            "xci_path": "ip\\design_1_compteur_nbits_0_0\\design_1_compteur_nbits_0_0.xci",
-            "inst_hier_path": "M1_decodeur_i2s/compteur_7bits",
-            "parameters": {
-              "nbits": {
-                "value": "7"
-              }
-            },
-            "reference_info": {
-              "ref_type": "hdl",
-              "ref_name": "compteur_nbits",
-              "boundary_crc": "0x0"
-            },
-            "ports": {
-              "clk": {
-                "type": "clk",
-                "direction": "I",
-                "parameters": {
-                  "ASSOCIATED_RESET": {
-                    "value": "reset",
-                    "value_src": "constant"
-                  },
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
-                  }
-                }
-              },
-              "i_en": {
-                "direction": "I"
-              },
-              "reset": {
-                "type": "rst",
-                "direction": "I"
-              },
-              "o_val_cpt": {
-                "direction": "O",
-                "left": "6",
-                "right": "0"
-              }
-            }
-          },
           "MEF_decodeur_i2s": {
             "vlnv": "xilinx.com:module_ref:mef_decod_i2s_v1b:1.0",
             "xci_name": "design_1_mef_decod_i2s_v1b_0_0",
@@ -376,6 +328,46 @@
                 "right": "0"
               }
             }
+          },
+          "compteur_7bits": {
+            "vlnv": "xilinx.com:module_ref:compteur_nbits:1.0",
+            "xci_name": "design_1_compteur_nbits_0_0",
+            "xci_path": "ip\\design_1_compteur_nbits_0_0\\design_1_compteur_nbits_0_0.xci",
+            "inst_hier_path": "M1_decodeur_i2s/compteur_7bits",
+            "parameters": {
+              "nbits": {
+                "value": "7"
+              }
+            },
+            "reference_info": {
+              "ref_type": "hdl",
+              "ref_name": "compteur_nbits",
+              "boundary_crc": "0x0"
+            },
+            "ports": {
+              "clk": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "ASSOCIATED_RESET": {
+                    "value": "reset",
+                    "value_src": "constant"
+                  }
+                }
+              },
+              "i_en": {
+                "direction": "I"
+              },
+              "reset": {
+                "type": "rst",
+                "direction": "I"
+              },
+              "o_val_cpt": {
+                "direction": "O",
+                "left": "6",
+                "right": "0"
+              }
+            }
           }
         },
         "nets": {
@@ -419,11 +411,11 @@
           "clk_1": {
             "ports": [
               "clk",
-              "compteur_7bits/clk",
               "MEF_decodeur_i2s/i_bclk",
               "registre_24bits_droite/i_clk",
               "registre_24bits_gauche/i_clk",
-              "registre_decalage_24bits/i_clk"
+              "registre_decalage_24bits/i_clk",
+              "compteur_7bits/clk"
             ]
           },
           "mef_decod_i2s_v1b_0_o_cpt_bit_reset": {
@@ -435,8 +427,8 @@
           "mef_decod_i2s_v1b_0_o_bit_enable": {
             "ports": [
               "MEF_decodeur_i2s/o_bit_enable",
-              "compteur_7bits/i_en",
-              "registre_decalage_24bits/i_en"
+              "registre_decalage_24bits/i_en",
+              "compteur_7bits/i_en"
             ]
           },
           "i_data_1": {
@@ -497,54 +489,6 @@
           }
         },
         "components": {
-          "compteur_nbits_0": {
-            "vlnv": "xilinx.com:module_ref:compteur_nbits:1.0",
-            "xci_name": "design_1_compteur_nbits_0_1",
-            "xci_path": "ip\\design_1_compteur_nbits_0_1\\design_1_compteur_nbits_0_1.xci",
-            "inst_hier_path": "M9_codeur_i2s/compteur_nbits_0",
-            "parameters": {
-              "nbits": {
-                "value": "7"
-              }
-            },
-            "reference_info": {
-              "ref_type": "hdl",
-              "ref_name": "compteur_nbits",
-              "boundary_crc": "0x0"
-            },
-            "ports": {
-              "clk": {
-                "type": "clk",
-                "direction": "I",
-                "parameters": {
-                  "ASSOCIATED_RESET": {
-                    "value": "reset",
-                    "value_src": "constant"
-                  },
-                  "FREQ_HZ": {
-                    "value": "100000000",
-                    "value_src": "user_prop"
-                  },
-                  "CLK_DOMAIN": {
-                    "value": "design_1_clk_100MHz",
-                    "value_src": "default_prop"
-                  }
-                }
-              },
-              "i_en": {
-                "direction": "I"
-              },
-              "reset": {
-                "type": "rst",
-                "direction": "I"
-              },
-              "o_val_cpt": {
-                "direction": "O",
-                "left": "6",
-                "right": "0"
-              }
-            }
-          },
           "mef_cod_i2s_vsb_0": {
             "vlnv": "xilinx.com:module_ref:mef_cod_i2s_vsb:1.0",
             "xci_name": "design_1_mef_cod_i2s_vsb_0_0",
@@ -768,6 +712,46 @@
                 "value": "1"
               }
             }
+          },
+          "compteur_nbits_0": {
+            "vlnv": "xilinx.com:module_ref:compteur_nbits:1.0",
+            "xci_name": "design_1_compteur_nbits_0_1",
+            "xci_path": "ip\\design_1_compteur_nbits_0_1\\design_1_compteur_nbits_0_1.xci",
+            "inst_hier_path": "M9_codeur_i2s/compteur_nbits_0",
+            "parameters": {
+              "nbits": {
+                "value": "7"
+              }
+            },
+            "reference_info": {
+              "ref_type": "hdl",
+              "ref_name": "compteur_nbits",
+              "boundary_crc": "0x0"
+            },
+            "ports": {
+              "clk": {
+                "type": "clk",
+                "direction": "I",
+                "parameters": {
+                  "ASSOCIATED_RESET": {
+                    "value": "reset",
+                    "value_src": "constant"
+                  }
+                }
+              },
+              "i_en": {
+                "direction": "I"
+              },
+              "reset": {
+                "type": "rst",
+                "direction": "I"
+              },
+              "o_val_cpt": {
+                "direction": "O",
+                "left": "6",
+                "right": "0"
+              }
+            }
           }
         },
         "nets": {
@@ -786,8 +770,8 @@
           "mef_cod_i2s_vsb_0_o_bit_enable": {
             "ports": [
               "mef_cod_i2s_vsb_0/o_bit_enable",
-              "compteur_nbits_0/i_en",
-              "reg_dec_24b_fd_0/i_en"
+              "reg_dec_24b_fd_0/i_en",
+              "compteur_nbits_0/i_en"
             ]
           },
           "mux2_0_output": {
@@ -850,9 +834,9 @@
           "i_bclk_0_1": {
             "ports": [
               "i_bclk",
-              "compteur_nbits_0/clk",
               "mef_cod_i2s_vsb_0/i_bclk",
-              "reg_dec_24b_fd_0/i_clk"
+              "reg_dec_24b_fd_0/i_clk",
+              "compteur_nbits_0/clk"
             ]
           },
           "xlconstant_0_dout": {
