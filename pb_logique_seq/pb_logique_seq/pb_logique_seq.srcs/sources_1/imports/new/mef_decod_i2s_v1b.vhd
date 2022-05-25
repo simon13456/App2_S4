@@ -1,7 +1,7 @@
 ---------------------------------------------------------------------------------------------
 -- circuit mef_decod_i2s_v1b.vhd                   Version mise en oeuvre avec des compteurs
 ---------------------------------------------------------------------------------------------
--- Université de Sherbrooke - Département de GEGI
+-- Universitï¿½ de Sherbrooke - Dï¿½partement de GEGI
 -- Version         : 1.0
 -- Nomenclature    : 0.8 GRAMS
 -- Date            : 7 mai 2019
@@ -19,12 +19,12 @@
 -- i_lrc        ~ 48.    KHz    (~ 20.8    us)
 -- d_ac_mclk,   ~ 12.288 MHz    (~ 80,715  ns) (non utilisee dans le codeur)
 -- i_bclk       ~ 3,10   MHz    (~ 322,857 ns) freq mclk/4
--- La durée d'une période reclrc est de 64,5 périodes de bclk ...
+-- La durï¿½e d'une pï¿½riode reclrc est de 64,5 pï¿½riodes de bclk ...
 --
 -- Revision  
--- Revision 14 mai 2019 (version ..._v1b) composants dans entités et fichiers distincts
+-- Revision 14 mai 2019 (version ..._v1b) composants dans entitï¿½s et fichiers distincts
 ---------------------------------------------------------------------------------------------
--- À faire :
+-- ï¿½ faire :
 --
 --
 ---------------------------------------------------------------------------------------------
@@ -50,11 +50,26 @@ entity mef_decod_i2s_v1b is
 end mef_decod_i2s_v1b;
 
 architecture Behavioral of mef_decod_i2s_v1b is
-
+   type etats is (
+         reset,
+         Att24,
+         Envoye
+         );
     signal   d_reclrc_prec  : std_logic ;  --
-    
+    signal EtatCourant, prochainEtat : etats;
 begin
-
+   
+    process(i_bclk, i_reset)
+    begin
+       if (i_reset ='1') then
+             EtatCourant <= reset;
+       else
+       if rising_edge(i_bclk) then
+             EtatCourant <= prochainEtat;
+       end if;
+       end if;
+    end process;
+    
    -- pour detecter transitions d_ac_reclrc
    reglrc_I2S: process ( i_bclk)
    begin
@@ -73,33 +88,27 @@ begin
      -- decodage compteur avec case ...   
         sig_ctrl_I2S:  process (i_cpt_bits, i_lrc )
             begin
-                case i_cpt_bits is
-                 when "0000000" =>
+                case EtatCourant is
+                 when reset =>
                      o_bit_enable     <= '1';
                      o_load_left      <= '0';
                      o_load_right     <= '0';
                      o_str_dat        <= '0';
-                 when   "0000001"  |  "0000010"  |  "0000011"  |  "0000100"  
-                       |  "0000101"  |  "0000110"  |  "0000111"  |  "0001000" 
-                       |  "0001001"  |  "0001010"  |  "0001011"  |  "0001100" 
-                       |  "0001101"  |  "0001110"  |  "0001111"  |  "0010000"  
-                       |  "0010001"  |  "0010010"  |  "0010011"  |  "0010100" 
-                       |  "0010101"  |  "0010110"  |  "0010111"   
-                    =>
-                     o_bit_enable     <= '1';
-                     o_load_left      <= '0';
-                     o_load_right     <= '0';
-                     o_str_dat        <= '0';
-                 when   "0011000"  =>
-                     o_bit_enable     <= '0';
-                     o_load_left      <= not i_lrc;
-                     o_load_right     <=  i_lrc;
-                     o_str_dat        <= '0';
-                 when    "0011001"  =>
-                    o_bit_enable     <= '0';
-                    o_load_left     <= '0';
+                     prochainEtat <= ATT24;
+                 when ATT24 =>
+                    o_bit_enable     <= '1';
+                    o_load_left      <= '0';
                     o_load_right     <= '0';
-                    o_str_dat        <=  i_lrc;
+                    o_str_dat        <= '0';
+                    if i_cpt_bits = "011000" then
+                        prochainEtat <= Envoye;
+                    end if;
+                 when    Envoye =>
+                    o_bit_enable     <=  '0';
+                    o_load_left      <=  not i_lrc;
+                    o_load_right     <=  i_lrc;
+                    o_str_dat        <=  '1';
+                        prochainEtat <= reset;
                  when  others  =>
                     o_bit_enable     <= '0';
                     o_load_left      <= '0';
