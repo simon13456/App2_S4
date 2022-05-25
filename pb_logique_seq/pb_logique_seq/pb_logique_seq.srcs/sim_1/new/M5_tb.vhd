@@ -41,9 +41,9 @@ component calcul_param_1 is
     Port (
     i_bclk    : in   std_logic; -- bit clock (I2S)
     i_reset   : in   std_logic;
-    i_en      : in   std_logic; -- un echantillon present a l'entrée
-    i_ech     : in   std_logic_vector (23 downto 0); -- echantillon en entrée
-    o_param   : out  std_logic_vector (7 downto 0)   -- paramètre calculé
+    i_en      : in   std_logic; -- un echantillon present a l'entr?e
+    i_ech     : in   std_logic_vector (23 downto 0); -- echantillon en entr?e
+    o_param   : out  std_logic_vector (7 downto 0)   -- param?tre calcul?
     );
 end component;
 
@@ -85,6 +85,12 @@ UUT: calcul_param_1
 
 TB : PROCESS
     BEGIN
+    
+----------------------------------------------------------------------------
+-- Test 1
+----------------------------------------------------------------------------    
+    
+    
     d_reset <= '1';
     wait for c_en_clk_Period;
     d_reset <= '0';
@@ -106,12 +112,32 @@ TB : PROCESS
     d_ech <= "000000000000000000000000";
     d_en <= '1'; 
     wait for c_en_clk_Period;
-    d_en <= '0'; 
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
     wait for c_data_period;
     d_ech <= "100000000000000000000000";
     d_en <= '1'; 
     wait for c_en_clk_Period;
-    d_en <= '0'; 
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
     wait for c_data_period;
     d_ech <= "100000000000000000000000";
     d_en <= '1'; 
@@ -127,7 +153,225 @@ TB : PROCESS
     d_en <= '1'; 
     wait for c_en_clk_Period;
     d_en <= '0'; 
+    wait for c_data_period;
+    
+----------------------------------------------------------------------------
+-- Test 2   120 H
+---------------------------------------------------------------------------- 
+d_reset <= '1';
+    wait for c_en_clk_Period;
+    d_reset <= '0';
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+     d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+     d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+     d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+     d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
     wait for c_data_period;        
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;        
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;        
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;        
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';     
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+
+----------------------------------------------------------------------------
+-- Test 3   120 H
+---------------------------------------------------------------------------- 
+
+
+     
     END PROCESS; 
 
 end Behavioral;

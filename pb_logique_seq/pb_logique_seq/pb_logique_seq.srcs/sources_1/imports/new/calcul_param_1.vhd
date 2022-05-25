@@ -1,4 +1,3 @@
-
 ---------------------------------------------------------------------------------------------
 --    calcul_param_1.vhd
 ---------------------------------------------------------------------------------------------
@@ -67,7 +66,9 @@ end component;
       sta_Va,
       sta_Vb,
       sta_Vc,
-      sta_Li
+      sta_Li,
+      sta_Lo,
+      sta_Se
      );
 signal fsm_EtatCourant, fsm_prochainEtat : fsm_c_etats; -- conserve le state
 signal d_cpt : std_logic_vector (7 downto 0) := "00000000";
@@ -128,19 +129,27 @@ end process;
                 end if;           
             when sta_Li =>
                 if(i_ech(23)='1') then
-                    fsm_prochainEtat <= sta_At;
-                    cpt_reset <= '1';
-                elsif(i_ech(23) = '0') then 
+                    fsm_prochainEtat <= sta_Lo;
+                else 
                     fsm_prochainEtat <= sta_Li;
                 end if;
+           when sta_Lo =>
+                if(i_ech(23)='1') then
+                    fsm_prochainEtat <= sta_Lo;
+                else 
+                    fsm_prochainEtat <= sta_Se;
+                end if;
+          when sta_Se =>
+            fsm_prochainEtat <= sta_At;
+            cpt_reset <= '1';
         end case; 
       end if;  
     end process;
     process(fsm_EtatCourant,d_cpt)
     begin
     case fsm_EtatCourant is
-        when sta_Li =>
-        o_param <= d_cpt-1; -- On envoie les donnes pour etre afficher
+        when sta_Se =>
+        o_param <= (d_cpt-2); -- On envoie les donnes pour etre afficher
         cpt_reset <= '1';
         
         when others =>
