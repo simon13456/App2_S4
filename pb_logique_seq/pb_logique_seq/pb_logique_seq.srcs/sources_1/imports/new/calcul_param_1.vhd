@@ -118,14 +118,20 @@ end process;
             when sta_Va =>
                 if(i_ech(23) = '0') then 
                     fsm_prochainEtat <= sta_Vb;
+                else
+                    fsm_prochainEtat <= sta_At;                    
                 end if;
             when sta_Vb =>
                 if(i_ech(23) = '0') then  
                     fsm_prochainEtat <= sta_Vc;
+                else
+                    fsm_prochainEtat <= sta_At;      
                 end if;
             when sta_Vc =>
                 if(i_ech(23) = '0') then  
                     fsm_prochainEtat <= sta_Li;
+                else
+                    fsm_prochainEtat <= sta_At;      
                 end if;           
             when sta_Li =>
                 if(i_ech(23)='1') then
@@ -149,7 +155,7 @@ end process;
     begin
     case fsm_EtatCourant is
         when sta_Se =>
-        o_param <= (d_cpt-2); -- On envoie les donnes pour etre afficher
+        o_param <= (d_cpt-1); -- On envoie les donnes pour etre afficher
         cpt_reset <= '1';
         
         when others =>

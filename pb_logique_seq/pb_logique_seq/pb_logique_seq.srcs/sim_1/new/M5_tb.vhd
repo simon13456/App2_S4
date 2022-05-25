@@ -85,12 +85,10 @@ UUT: calcul_param_1
 
 TB : PROCESS
     BEGIN
-    
+ 
 ----------------------------------------------------------------------------
 -- Test 1
 ----------------------------------------------------------------------------    
-    
-    
     d_reset <= '1';
     wait for c_en_clk_Period;
     d_reset <= '0';
@@ -370,8 +368,266 @@ d_reset <= '1';
 -- Test 3   120 H
 ---------------------------------------------------------------------------- 
 
+ d_reset <= '1';
+    wait for c_en_clk_Period;
+    d_reset <= '0';
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+     d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+     d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;        
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;        
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';     
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+----------------------------------------------------------------------------
+-- Test 4   120 H
+---------------------------------------------------------------------------- 
 
-     
-    END PROCESS; 
+ d_reset <= '1';
+    wait for c_en_clk_Period;
+    d_reset <= '0';
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1';  
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;        
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';     
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
 
+   
+----------------------------------------------------------------------------
+-- Test 5
+----------------------------------------------------------------------------  
+    d_reset <= '1';
+    wait for 200 us;
+    d_reset <= '0';
+  
+----------------------------------------------------------------------------
+-- Test 6
+----------------------------------------------------------------------------
+    d_reset <= '1';
+    wait for c_en_clk_Period;
+    d_reset <= '0';
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+----------------------------------------------------------------------------
+-- Test 7
+---------------------------------------------------------------------------- 
+  d_reset <= '1';
+    wait for c_en_clk_Period;
+    d_reset <= '0';
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;   
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;   
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';
+    wait for c_data_period;
+    d_ech <= "100000000000000000000000";
+    d_en <= '1';  
+    wait for c_en_clk_Period;
+    d_en <= '0';  
+    wait for c_data_period;
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;        
+    d_ech <= "100000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0';     
+    d_ech <= "000000000000000000000000";
+    d_en <= '1'; 
+    wait for c_en_clk_Period;
+    d_en <= '0'; 
+    wait for c_data_period;
+ 
+ end process;
 end Behavioral;
